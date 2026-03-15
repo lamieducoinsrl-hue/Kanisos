@@ -14,9 +14,9 @@
 --------------------------------------------------------------*/
 /* Fonts */
 :root {
-  --default-font: "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --heading-font: "Source Serif Pro",  sans-serif;
-  --nav-font: "Roboto Slab",  sans-serif;
+  --default-font: "Trajan Pro", "Times New Roman", serif;
+  --heading-font: "Trajan Pro", "Times New Roman", serif;
+  --nav-font: "Trajan Pro", "Times New Roman", serif;
 }
 
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
@@ -63,8 +63,29 @@
 # General Styling & Shared Classes
 --------------------------------------------------------------*/
 body {
+  font-family: var(--default-font);
   color: var(--default-color);
   background-color: var(--background-color);
+}
+
+a[href^="tel:"] {
+  color: inherit;
+  text-decoration: none;
+}
+
+a[href^="tel:"]:hover {
+  text-decoration: underline;
+}
+
+body * {
+  font-family: inherit;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
 }
 
 a {
@@ -86,6 +107,13 @@ h5,
 h6 {
   color: var(--heading-color);
   font-family: var(--heading-font);
+}
+
+.glightbox-clean .gslide-title,
+.glightbox-clean .gslide-desc,
+.tooltip,
+.popover {
+  font-family: var(--default-font);
 }
 
 /* PHP Email Form Messages
@@ -1663,6 +1691,30 @@ section,
 }
 
 .menu .menu-actions .menu-download-btn i {
+  font-size: 1.1rem;
+}
+
+.gallery .social-follow-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background-color: var(--accent-color);
+  color: var(--contrast-color);
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px color-mix(in srgb, var(--accent-color), transparent 60%);
+}
+
+.gallery .social-follow-btn:hover {
+  background-color: color-mix(in srgb, var(--accent-color), transparent 15%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px color-mix(in srgb, var(--accent-color), transparent 40%);
+}
+
+.gallery .social-follow-btn i {
   font-size: 1.1rem;
 }
 
