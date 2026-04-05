@@ -157,13 +157,6 @@
   window.addEventListener("load", initSwiper);
 
   /**
-   * Initiate glightbox
-   */
-  const glightbox = GLightbox({
-    selector: '.glightbox'
-  });
-
-  /**
    * Correct scrolling position upon page load for URLs containing hash links.
    */
   window.addEventListener('load', function(e) {

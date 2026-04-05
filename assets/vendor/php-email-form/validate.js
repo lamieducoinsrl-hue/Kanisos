@@ -50,10 +50,14 @@
   });
 
   function php_email_form_submit(thisForm, action, formData) {
+    if (window.location.protocol === 'file:') {
+      displayError(thisForm, 'This form cannot send email when the page is opened directly from disk. Serve the site through a PHP-enabled server or deploy it to hosting that supports PHP.');
+      return;
+    }
+
     fetch(action, {
       method: 'POST',
-      body: formData,
-      headers: {'X-Requested-With': 'XMLHttpRequest'}
+      body: formData
     })
     .then(response => {
       if( response.ok ) {
@@ -72,6 +76,11 @@
       }
     })
     .catch((error) => {
+      if (error instanceof TypeError) {
+        displayError(thisForm, 'Unable to reach the contact form endpoint. If you are testing locally, run the site from a PHP-enabled server. If deployed, make sure forms/contact.php is available on the same origin and PHP is enabled.');
+        return;
+      }
+
       displayError(thisForm, error);
     });
   }
