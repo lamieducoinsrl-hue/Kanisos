@@ -944,7 +944,7 @@
             <div class="contact-form-wrapper">
               <h2 class="text-center mb-4">Get in Touch</h2>
 
-              <form action="https://api.web3forms.com/submit" method="POST" class="php-email-form">
+              <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
                 <input type="hidden" name="access_key" value="32611390-cf24-4851-8d94-59758ceff9d7">
                 <div class="row g-3">
                   <div class="col-md-6">
@@ -1122,6 +1122,29 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <script>
+    const form = document.getElementById('contact-form');
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const loading = form.querySelector('.loading');
+      const errorMsg = form.querySelector('.error-message');
+      const sentMsg = form.querySelector('.sent-message');
+      loading.style.display = 'block';
+      errorMsg.style.display = 'none';
+      sentMsg.style.display = 'none';
+      const res = await fetch(form.action, { method: 'POST', body: new FormData(form) });
+      const data = await res.json();
+      loading.style.display = 'none';
+      if (data.success) {
+        sentMsg.style.display = 'block';
+        form.reset();
+      } else {
+        errorMsg.textContent = 'Something went wrong. Please try again.';
+        errorMsg.style.display = 'block';
+      }
+    });
+  </script>
 
 </body>
 
