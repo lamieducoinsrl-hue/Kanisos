@@ -4,7 +4,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
   exit('Method Not Allowed');
 }
 
-$receiving_email_address = 'info@kanisos.be';
+$receiving_email_address = 'info@kanisos.com';
 
 $name = trim($_POST['name'] ?? '');
 $email = trim($_POST['email'] ?? '');
